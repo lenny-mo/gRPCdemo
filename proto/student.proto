@@ -1,0 +1,34 @@
+// 声明版本
+syntax = "proto3";
+
+// 输出变异之后的目录
+option go_package = "./student";
+
+// 定义包名
+package student;
+
+// 定义消息体
+message Student {
+    // 定义字段
+    string name = 1;
+    int32 age = 2;
+    string address = 3;
+}
+
+// 定义rpc服务
+service StudentService {
+    // 定义方法             
+    // 请求类型指定了客户端向服务器发送的数据结构
+    // 响应类型指定了服务器向客户端返回的数据结构   
+    rpc GetStudent (StudentRequest) returns (StudentResponse);
+}
+
+// 定义请求类型
+message StudentRequest {
+    string name = 1;
+}
+
+// 定义响应类型
+message StudentResponse {
+    Student student = 1;
+}
